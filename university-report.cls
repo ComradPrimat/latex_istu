@@ -19,7 +19,7 @@
   float, pdfpages, hyphenat, geometry, polyglossia, fontspec,
   amsmath, amssymb, setspace, titlesec, fancyhdr, graphicx, array,
   tabularx, caption, xcolor,  tocloft, enumitem, csquotes,
-  xifthen, pgfplots, tikz, multirow, makecell, icomma, svg  
+  xifthen, pgfplots, tikz, multirow, makecell, icomma, svg, parskip
 }
 \RequirePackage[newfloat]{minted}
 \RequirePackage[most]{tcolorbox}
@@ -174,6 +174,7 @@
 \newenvironment{lst}[3]
 {%
   \VerbatimEnvironment
+  \vspace{14pt}
   \begin{tcolorbox}[breakable,
                     colback=white,
                     colframe=white,
@@ -193,16 +194,17 @@
 {%
     \end{code}%
   \end{tcolorbox}%
+  \vspace{14pt}
 }
-
+\renewcommand{\theFancyVerbLine}{\textcolor{black}{\fontsize{8}{12}\selectfont\ttfamily\fontspec{Fira Code}\arabic{FancyVerbLine}}}
 \setminted{
-  fontsize=\fontsize{10pt}{10pt}\selectfont,           % Размер шрифта
+  fontsize=\fontsize{10pt}{12pt}\selectfont,           % Размер шрифта
   baselinestretch=1.0,       % Межстрочный интервал
-  numbers=left,              % Нумерация строк слева
-  numbersep=10pt,             % Отступ номеров от кода
+  linenos=true,
+  numbersep=2pt,             % Отступ номеров от кода
   xleftmargin=10pt,          % Левый отступ кода
-  frame=leftline,               % Рамка (lines, leftline, none)
-  framesep=1mm,              % Отступ рамки от кода
+  frame=leftline,            % Рамка (lines, leftline, none)
+  framesep=2pt,              % Отступ рамки от кода
   rulecolor=black,           % Цвет рамки
   breaklines=true,           % Перенос длинных строк
   breakautoindent=true,      % Автоотступ при переносе
@@ -212,10 +214,6 @@
   autogobble=true,
   listparameters={\setlength{\topsep}{0pt}\setlength{\partopsep}{0pt}}
 }
-
-% ==================================================
-% УПРОЩЕННАЯ ВЕРСИЯ (КАК С lstlisting)
-% ==================================================
 
 % ==================================================
 % ИЗОБРАЖЕНИЯ
