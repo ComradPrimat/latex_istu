@@ -123,10 +123,10 @@
 \addto\captionsrussian{
   \renewcommand{\figurename}{Рисунок}
   \renewcommand{\tablename}{Таблица}
-  \renewcommand{\listingname}{Листинг}
+  \renewcommand{\lstlistingname}{Листинг}
 }
 
-\captionsetup[listing]{
+\captionsetup[lstlisting]{
   labelsep=emdash,
   font=captionfont,
   justification=raggedright,
@@ -138,7 +138,7 @@
 \captionsetup[figure]{
   labelsep=emdash,
   font=captionfont,
-  aboveskip=12pt,
+  aboveskip=10pt,
   belowskip=0pt
 }
 
@@ -154,14 +154,16 @@
 \setlength{\intextsep}{\listingvspace}
 \setlength{\textfloatsep}{\listingvspace}
 \setlength{\floatsep}{\listingvspace}
-\floatname{listing}{Листинг}
-\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+
+\newenvironment{longlisting}{\captionsetup{type=lstlisting}}{}
 \newenvironment{code}[3]
 {%
 	\VerbatimEnvironment
 	\begin{longlisting}%
-	\label{lst:#3}%
 	\caption{#2}%
+  \label{#3}%
+  \nopagebreak%
+  \vspace{2pt}
   \nopagebreak%
 	\begin{minted}{#1}%
 	}
@@ -170,11 +172,9 @@
 	\end{longlisting}%
 }
 
-
 \newenvironment{lst}[3]
 {%
   \VerbatimEnvironment
-  \vspace{14pt}
   \begin{tcolorbox}[breakable,
                     colback=white,
                     colframe=white,
@@ -186,15 +186,14 @@
                     bottom=0pt,
                     sharp corners,
                     enhanced,
-                    before skip = 0pt,
-                    after skip = 0pt,
+                    before skip = \listingvspace,
+                    after skip = \listingvspace,
                     attach boxed title to top center={yshift=0mm}]%
     \begin{code}{#1}{#2}{#3}%
 }
 {%
     \end{code}%
   \end{tcolorbox}%
-  \vspace{14pt}
 }
 \renewcommand{\theFancyVerbLine}{\textcolor{black}{\fontsize{8}{12}\selectfont\ttfamily\fontspec{Fira Code}\arabic{FancyVerbLine}}}
 \setminted{
@@ -284,6 +283,3 @@
 \frenchspacing
 \sloppy
 \hyphenpenalty=10000
-
-\floatname{lstfloat}{Listing}
-\def\lstfloatautorefname{Listing}
