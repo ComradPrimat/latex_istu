@@ -8,9 +8,9 @@
 % ==================================================
 \newlength{\floatvspace}      \setlength{\floatvspace}{14pt}   % отступы вокруг рисунков
 \newlength{\listingvspace}    \setlength{\listingvspace}{14pt}   % отступы вокруг lstlisting
-\newlength{\tablevspace}      \setlength{\tablevspace}{12pt}    % отступы вокруг таблиц
+\newlength{\tablevspace}      \setlength{\tablevspace}{14pt}    % отступы вокруг таблиц
 \newlength{\sectionindent}    \setlength{\sectionindent}{1.25cm} % отступы подпунктов в Оглавлении
-\newlength{\structskip}       \setlength{\structskip}{21pt}     % отступы структурных блоков (на будущее)
+%\newlength{\structskip}       \setlength{\structskip}{21pt}     % отступы структурных блоков (на будущее)
 
 % ==================================================
 % ПАКЕТЫ
@@ -68,8 +68,14 @@
 % ==================================================
 \onehalfspacing
 \setlength{\parindent}{1.25cm}
-\setlength{\topskip}{0pt}
-
+\setlength{\parskip}{0pt}  % Установите на 0, если у вас есть проблемы с интервалами между абзацами
+\setlength{\topskip}{0pt}  % Убедитесь, что topskip минимален
+\setlength{\abovecaptionskip}{12pt}  % Отступ перед подписью
+\setlength{\belowcaptionskip}{0pt}  % Отступ после подписи
+\setlength{\floatsep}{21pt}          % Отступ между плавающими объектами
+\setlength{\intextsep}{21pt}         % Пространство для встраиваемых объектов
+\setlength{\topsep}{21pt}
+\setlength{\textfloatsep}{21pt}      % Пространство между текстом и плавающими объектами
 % ==================================================
 % КОЛОНТИТУЛЫ
 % ==================================================
@@ -106,7 +112,7 @@
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdot}}
 
 \setlength{\cftsecindent}{0pt}
-\setlength{\cftsubsecindent}{\sectionindent}
+\setlength{\cftsubsecindent}{0pt}
 
 \renewcommand{\cftsecfont}{\bfseries\fontsize{14pt}{16pt}\selectfont}
 \renewcommand{\cftsubsecfont}{\bfseries\fontsize{14pt}{16pt}\selectfont}
@@ -138,7 +144,7 @@
 \captionsetup[figure]{
   labelsep=emdash,
   font=captionfont,
-  aboveskip=10pt,
+  aboveskip=12pt,
   belowskip=0pt
 }
 
@@ -147,24 +153,21 @@
   labelsep=endash,
   justification=raggedright,
   font=captionfont,
-  skip=6pt
+  skip=0pt
 }
 
 % --- ЛИСТИНГИ MINTED ---
-\setlength{\intextsep}{\listingvspace}
-\setlength{\textfloatsep}{\listingvspace}
-\setlength{\floatsep}{\listingvspace}
 
 \newenvironment{longlisting}{\captionsetup{type=lstlisting}}{}
 \newenvironment{code}[3]
 {%
-	\VerbatimEnvironment
 	\begin{longlisting}%
 	\caption{#2}%
   \label{#3}%
   \nopagebreak%
   \vspace{2pt}
   \nopagebreak%
+	\VerbatimEnvironment
 	\begin{minted}{#1}%
 	}
 	{%
@@ -194,6 +197,7 @@
 {%
     \end{code}%
   \end{tcolorbox}%
+  \noindent
 }
 \renewcommand{\theFancyVerbLine}{\textcolor{black}{\fontsize{8}{12}\selectfont\ttfamily\fontspec{Fira Code}\arabic{FancyVerbLine}}}
 \setminted{
@@ -214,18 +218,16 @@
   listparameters={\setlength{\topsep}{0pt}\setlength{\partopsep}{0pt}}
 }
 
-% ==================================================
+% ===============h==================================
 % ИЗОБРАЖЕНИЯ
 % ==================================================
 \newcommand{\insertimage}[4][1]{%
-  \vspace{\floatvspace}
   \begin{figure}[H]
     \centering
     \includegraphics[scale=#1]{#2}
     \caption{#3}
     \label{#4}
   \end{figure}
-  \vspace{\floatvspace}
 }
 
 % ==================================================
