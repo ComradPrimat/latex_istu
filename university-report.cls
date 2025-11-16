@@ -19,7 +19,7 @@
   float, pdfpages, hyphenat, geometry, polyglossia, fontspec,
   amsmath, amssymb, setspace, titlesec, fancyhdr, graphicx, array,
   tabularx, caption, xcolor,  tocloft, enumitem, csquotes,
-  xifthen, pgfplots, tikz, multirow, makecell, icomma, svg, parskip
+  xifthen, pgfplots, tikz, multirow, makecell, icomma, svg, parskip, environ
 }
 \RequirePackage[newfloat]{minted}
 \RequirePackage[most]{tcolorbox}
@@ -159,25 +159,8 @@
 % --- ЛИСТИНГИ MINTED ---
 
 \newenvironment{longlisting}{\captionsetup{type=lstlisting}}{}
-\newenvironment{code}[3]
+\newenvironment{lst}[2]
 {%
-	\begin{longlisting}%
-	\caption{#2}%
-  \label{#3}%
-  \nopagebreak%
-  \vspace{2pt}
-  \nopagebreak%
-	\VerbatimEnvironment
-	\begin{minted}{#1}%
-	}
-	{%
-	\end{minted}%
-	\end{longlisting}%
-}
-
-\newenvironment{lst}[3]
-{%
-  \VerbatimEnvironment
   \begin{tcolorbox}[breakable,
                     colback=white,
                     colframe=white,
@@ -192,10 +175,15 @@
                     before skip = \listingvspace,
                     after skip = \listingvspace,
                     attach boxed title to top center={yshift=0mm}]%
-    \begin{code}{#1}{#2}{#3}%
+    \begin{longlisting}%
+    \caption{#1}%
+    \label{#2}%
+    \nopagebreak%
+    \vspace{2pt}%
+    \nopagebreak%
 }
 {%
-    \end{code}%
+	  \end{longlisting}%
   \end{tcolorbox}%
   \noindent
 }
@@ -285,3 +273,5 @@
 \frenchspacing
 \sloppy
 \hyphenpenalty=10000
+
+\newcommand{\graphfont}{\fontsize{10pt}{12pt}\selectfont\rmfamily}
