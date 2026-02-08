@@ -19,7 +19,7 @@
   float, pdfpages, hyphenat, geometry, polyglossia, fontspec,
   amsmath, amssymb, setspace, titlesec, fancyhdr, graphicx, array,
   tabularx, caption, xcolor,  tocloft, enumitem, csquotes,
-  xifthen, pgfplots, tikz, multirow, makecell, icomma, svg, parskip, environ
+  xifthen, pgfplots, tikz, multirow, makecell, icomma, svg, parskip, environ, float, placeins
 }
 \RequirePackage[newfloat]{minted}
 \RequirePackage[most]{tcolorbox}
@@ -129,10 +129,10 @@
 \addto\captionsrussian{
   \renewcommand{\figurename}{Рисунок}
   \renewcommand{\tablename}{Таблица}
-  \renewcommand{\lstlistingname}{Листинг}
+  \renewcommand{\listingname}{Листинг}
 }
 
-\captionsetup[lstlisting]{
+\captionsetup[listing]{
   labelsep=emdash,
   font=captionfont,
   justification=raggedright,
