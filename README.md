@@ -1,1 +1,1 @@
-# latex_istu
+# ISTU LaTex template for reports
